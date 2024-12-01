@@ -1,0 +1,11 @@
+{
+  "local_address": "127.0.0.1",
+  "local_port": 1086,
+  "method": "chacha20-ietf-poly1305",
+  "password": "gRWf5drnhoiDS2+CwGQhtg==",
+  "plugin": "plugins/v2ray-plugin",
+  "plugin_opts": "host=tt.tuoshecx.com;path=/ss",
+  "server": "tt.tuoshecx.com",
+  "server_port": 4364,
+  "timeout": 60
+}

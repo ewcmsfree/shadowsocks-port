@@ -1,0 +1,17 @@
+[package]
+name = "shadowsocks-port"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# 任意错误
+anyhow = "1.0.93"
+# 执行 shell 扩展
+shellexpand = "3.1.0"
+serde = { version = "1.0.215" , features = ["derive"] }
+# yaml文件处理
+serde_yaml = "0.9.34"
+serde_json = "1.0.133"
+serde_with = "3.11.0"
+reqwest = { version = "0.12.9", features = ["json", "blocking"], default-features = false }
+tokio = { version = "1.41.1", features = ["full"] }

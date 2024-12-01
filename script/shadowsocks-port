@@ -1,0 +1,27 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+start() {
+  echo "shadowsocks-port startup ..."
+  res=`ps |grep "*shadowsocks-port" | grep /bin/sh `
+  if [ -n "${res}" ];then
+    echo "shadowsocks-port existence exiting..." > /dev/console
+    return 0
+  else
+	  /usr/bin/shadowsocks-port &
+	  echo "shadowsocks-port is running..."
+	  return 1
+  fi
+}
+stop() {
+  pid=`ps |grep shadowsocks-port |grep /bin/sh | awk '{print $1}'`
+  if [ -n "${pid}" ];then
+    kill -9 ${pid}
+  fi
+  return 0
+}
+restart() {
+  echo "shadowsocks-port don't restart command"
+  return 0
+}

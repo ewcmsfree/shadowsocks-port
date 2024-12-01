@@ -1,0 +1,10 @@
+remote_file:
+  host: 192.168.0.99
+  port: 80
+  file: 1.txt
+  ssl: false
+shadowsocks:
+#  os: immortalwrt
+#  path: /Users/wu_zhijun/works/RustroverProjects/rpi-work/shadowsocks-port/fixtures/passwall
+  os: macos
+  path: /Users/wu_zhijun/works/RustroverProjects/rpi-work/shadowsocks-port/fixtures/ss-local-config.json
