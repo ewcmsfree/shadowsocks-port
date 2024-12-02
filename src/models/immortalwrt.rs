@@ -1,8 +1,8 @@
+use crate::context::ShadowsocksPort;
 use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::path::Path;
-use crate::context::ShadowsocksPort;
 
 pub struct Immortalwrt;
 

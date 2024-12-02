@@ -3,7 +3,11 @@ use std::path::Path;
 pub trait ShadowsocksPort {
     fn read_shadowsocks_port(&self, file_path: &Path) -> Result<u32, Box<dyn std::error::Error>>;
 
-    fn modify_shadowsocks_port(&self, file_path: &Path, port: u32) -> Result<(), Box<dyn std::error::Error>>;
+    fn modify_shadowsocks_port(
+        &self,
+        file_path: &Path,
+        port: u32,
+    ) -> Result<(), Box<dyn std::error::Error>>;
 }
 
 pub struct Context {
@@ -15,15 +19,19 @@ impl Context {
         Context { shadowsocks_port }
     }
 
-    pub fn set_shadowsocks_port(&mut self, shadowsocks_port: Box<dyn ShadowsocksPort>) {
-        self.shadowsocks_port = shadowsocks_port;
-    }
-
-    pub fn read_shadowsocks_port(&self, file_path: &Path) -> Result<u32, Box<dyn std::error::Error>> {
+    pub fn read_shadowsocks_port(
+        &self,
+        file_path: &Path,
+    ) -> Result<u32, Box<dyn std::error::Error>> {
         self.shadowsocks_port.read_shadowsocks_port(file_path)
     }
 
-    pub fn modify_shadowsocks_port(&self, file_path: &Path, port: u32) -> Result<(), Box<dyn std::error::Error>> {
-        self.shadowsocks_port.modify_shadowsocks_port(file_path, port)
+    pub fn modify_shadowsocks_port(
+        &self,
+        file_path: &Path,
+        port: u32,
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        self.shadowsocks_port
+            .modify_shadowsocks_port(file_path, port)
     }
 }

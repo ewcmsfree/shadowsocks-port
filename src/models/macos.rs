@@ -1,10 +1,10 @@
+use crate::context::ShadowsocksPort;
+use serde_json::Value;
 use std::error::Error;
 use std::fs;
 use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
-use serde_json::Value;
-use crate::context::ShadowsocksPort;
 
 pub struct MacOS;
 

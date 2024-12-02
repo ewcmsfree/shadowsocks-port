@@ -4,7 +4,7 @@ use std::path::Path;
 /// 配置信息
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Config {
-    pub remote_file: RemoteFileConfig, // 远程服务文件
+    pub remote_file: RemoteFileConfig,  // 远程服务文件
     pub shadowsocks: ShadowsocksConfig, // shadowsocks配置
 }
 
@@ -41,9 +41,9 @@ impl Config {
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct RemoteFileConfig {
     pub host: String, // 服务器地址
-    pub port: u32, // 服务器端口
+    pub port: u32,    // 服务器端口
     pub file: String, // 服务器文件
-    pub ssl: bool, // 是否使用ssl
+    pub ssl: bool,    // 是否使用ssl
 }
 
 impl RemoteFileConfig {
@@ -61,14 +61,14 @@ impl RemoteFileConfig {
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ShadowsocksConfig {
     pub path: String, // 配置文件路径
-    pub os: String, // 操作系统
+    pub os: String,   // 操作系统
 }
 
 impl ShadowsocksConfig {
     pub fn get_path(&self) -> String {
         self.path.clone()
     }
-    
+
     pub fn get_os(&self) -> String {
         self.os.clone()
     }
