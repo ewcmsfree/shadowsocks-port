@@ -1,9 +1,14 @@
+use async_trait::async_trait;
 use std::path::Path;
 
+#[async_trait]
 pub trait ShadowsocksPort {
-    fn read_shadowsocks_port(&self, file_path: &Path) -> Result<u32, Box<dyn std::error::Error>>;
+    async fn read_shadowsocks_port(
+        &self,
+        file_path: &Path,
+    ) -> Result<u32, Box<dyn std::error::Error>>;
 
-    fn modify_shadowsocks_port(
+    async fn modify_shadowsocks_port(
         &self,
         file_path: &Path,
         port: u32,
@@ -19,19 +24,20 @@ impl Context {
         Context { shadowsocks_port }
     }
 
-    pub fn read_shadowsocks_port(
+    pub async fn read_shadowsocks_port(
         &self,
         file_path: &Path,
     ) -> Result<u32, Box<dyn std::error::Error>> {
-        self.shadowsocks_port.read_shadowsocks_port(file_path)
+        self.shadowsocks_port.read_shadowsocks_port(file_path).await
     }
 
-    pub fn modify_shadowsocks_port(
+    pub async fn modify_shadowsocks_port(
         &self,
         file_path: &Path,
         port: u32,
     ) -> Result<(), Box<dyn std::error::Error>> {
         self.shadowsocks_port
             .modify_shadowsocks_port(file_path, port)
+            .await
     }
 }

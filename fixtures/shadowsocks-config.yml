@@ -1,10 +1,10 @@
 remote_file:
-  host: 192.168.1.99
+  host: www.tuoshecx.com
   port: 80
-  file: 1.txt
+  file: sw-port.txt
   ssl: false
 shadowsocks:
-#  os: immortalwrt
-#  path: /Users/wu_zhijun/works/RustroverProjects/rpi-work/shadowsocks-port/fixtures/passwall
-  os: macos
-  path: /Users/wu_zhijun/works/RustroverProjects/rpi-work/shadowsocks-port/fixtures/ss-local-config.json
+# os is immortalwrt、macos、windows、Linux、ubuntu
+  os: immortalwrt
+  config: /etc/config/passwall
+  command: /etc/init.d/passwall restart

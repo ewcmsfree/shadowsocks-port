@@ -60,16 +60,20 @@ impl RemoteFileConfig {
 
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct ShadowsocksConfig {
-    pub path: String, // 配置文件路径
-    pub os: String,   // 操作系统
+    pub os: String,      // 操作系统
+    pub config: String,  // 配置文件路径
+    pub command: String, // 操作命令
 }
 
 impl ShadowsocksConfig {
-    pub fn get_path(&self) -> String {
-        self.path.clone()
-    }
-
     pub fn get_os(&self) -> String {
         self.os.clone()
+    }
+    pub fn get_config(&self) -> String {
+        self.config.clone()
+    }
+
+    pub fn get_command(&self) -> String {
+        self.command.clone()
     }
 }

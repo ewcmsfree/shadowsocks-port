@@ -1,4 +1,5 @@
 use crate::context::ShadowsocksPort;
+use async_trait::async_trait;
 use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Write};
@@ -6,8 +7,9 @@ use std::path::Path;
 
 pub struct Immortalwrt;
 
+#[async_trait]
 impl ShadowsocksPort for Immortalwrt {
-    fn read_shadowsocks_port(&self, file_path: &Path) -> Result<u32, Box<dyn Error>> {
+    async fn read_shadowsocks_port(&self, file_path: &Path) -> Result<u32, Box<dyn Error>> {
         let file = File::open(file_path)?;
         let reader = BufReader::new(file);
         for line in reader.lines() {
@@ -20,7 +22,11 @@ impl ShadowsocksPort for Immortalwrt {
         Ok(0)
     }
 
-    fn modify_shadowsocks_port(&self, file_path: &Path, port: u32) -> Result<(), Box<dyn Error>> {
+    async fn modify_shadowsocks_port(
+        &self,
+        file_path: &Path,
+        port: u32,
+    ) -> Result<(), Box<dyn Error>> {
         let file = File::open(file_path)?;
         let reader = BufReader::new(file);
 
