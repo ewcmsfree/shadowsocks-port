@@ -14,7 +14,7 @@
       "plugin": "v2ray-plugin_windows_amd64",
       "plugin_opts": "host=tt.tuoshecx.com;path=/ss",
       "server": "tt.tuoshecx.com",
-      "server_port": 10736,
+      "server_port": 20757,
       "timeout": 5,
       "warnLegacyUrl": false
     }

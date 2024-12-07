@@ -37,7 +37,7 @@ impl ShadowsocksPort for MacOS {
 
         if let Some(server_port) = parsed_json.get_mut("server_port") {
             *server_port = Value::Number(serde_json::Number::from(port));
-            debug!("read local shadowsocks config file : {:#?}", parsed_json);
+            debug!("modify local shadowsocks config file : {:#?}", parsed_json);
         }
 
         let modified_json_string = serde_json::to_string_pretty(&parsed_json)?;

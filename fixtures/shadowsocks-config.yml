@@ -5,8 +5,8 @@ remote_file:
   ssl: false
 shadowsocks:
 # os is immortalwrt、macos、windows、Linux、ubuntu
-  os: windows
-  config: /Users/wu_zhijun/works/RustroverProjects/rpi-work/shadowsocks-port/fixtures/gui-config.json
+  os: immortalwrt
+  config: /Users/wu_zhijun/works/RustroverProjects/rpi-work/shadowsocks-port/fixtures/passwall
   command:
 level:
   log: debug

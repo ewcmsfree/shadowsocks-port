@@ -73,7 +73,6 @@ impl ShadowsocksConfig {
     pub fn get_config(&self) -> String {
         self.config.clone()
     }
-
     pub fn get_command(&self) -> String {
         self.command.clone()
     }
@@ -90,9 +89,9 @@ impl LevelConfig {
         match self.log.as_str() {
             "trace" => tracing::Level::TRACE,
             "debug" => tracing::Level::DEBUG,
-            "info" => tracing::Level::INFO,
             "warn" => tracing::Level::WARN,
-            _ => tracing::Level::ERROR,
+            "error" => tracing::Level::ERROR,
+            _ => tracing::Level::INFO,
         }
     }
 }
