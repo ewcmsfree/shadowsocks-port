@@ -6,6 +6,7 @@ use std::path::Path;
 pub struct Config {
     pub remote_file: RemoteFileConfig,  // 远程服务文件
     pub shadowsocks: ShadowsocksConfig, // shadowsocks配置
+    pub level: LevelConfig,             // 打印日志级别
 }
 
 impl Config {
@@ -75,5 +76,23 @@ impl ShadowsocksConfig {
 
     pub fn get_command(&self) -> String {
         self.command.clone()
+    }
+}
+
+/// Level控制台打印日志配置信息
+#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct LevelConfig {
+    pub log: String,
+}
+
+impl LevelConfig {
+    pub fn get_log_level(&self) -> tracing::Level {
+        match self.log.as_str() {
+            "trace" => tracing::Level::TRACE,
+            "debug" => tracing::Level::DEBUG,
+            "info" => tracing::Level::INFO,
+            "warn" => tracing::Level::WARN,
+            _ => tracing::Level::ERROR,
+        }
     }
 }

@@ -1,0 +1,80 @@
+{
+  "WebProxy": {
+    "_BypassList": null,
+    "_BypassOnLocal": false,
+    "_ProxyAddress": "http://127.0.0.1:7890",
+    "_UseDefaultCredentials": false
+  },
+  "autoCheckUpdate": false,
+  "checkPreRelease": false,
+  "configs": [
+    {
+      "method": "chacha20-ietf-poly1305",
+      "password": "gRWf5drnhoiDS2+CwGQhtg==",
+      "plugin": "v2ray-plugin_windows_amd64",
+      "plugin_opts": "host=tt.tuoshecx.com;path=/ss",
+      "server": "tt.tuoshecx.com",
+      "server_port": 10736,
+      "timeout": 5,
+      "warnLegacyUrl": false
+    }
+  ],
+  "enabled": true,
+  "firstRun": false,
+  "generateLegacyUrl": false,
+  "geositeDirectGroups": [
+    "private",
+    "cn",
+    "geolocation-!cn@cn"
+  ],
+  "geositePreferDirect": false,
+  "geositeProxiedGroups": [
+    "geolocation-!cn"
+  ],
+  "geositeSha256sumUrl": "",
+  "geositeUrl": "",
+  "global": false,
+  "hotkey": {
+    "RegHotkeysAtStartup": false,
+    "ServerMoveDown": "",
+    "ServerMoveUp": "",
+    "ShowLogs": "",
+    "SwitchAllowLan": "",
+    "SwitchSystemProxy": "",
+    "SwitchSystemProxyMode": ""
+  },
+  "index": 0,
+  "isIPv6Enabled": false,
+  "isVerboseLogging": true,
+  "localPort": 7890,
+  "logViewer": {
+    "BackgroundColor": "Black",
+    "Font": "Consolas, 8pt",
+    "TextColor": "White",
+    "toolbarShown": false,
+    "topMost": false,
+    "wrapText": false
+  },
+  "onlineConfigSource": [],
+  "pacUrl": "",
+  "portableMode": false,
+  "proxy": {
+    "authPwd": "",
+    "authUser": "",
+    "proxyPort": 0,
+    "proxyServer": "",
+    "proxyTimeout": 3,
+    "proxyType": 0,
+    "useAuth": false,
+    "useProxy": false
+  },
+  "regeneratePacOnUpdate": true,
+  "secureLocalPac": true,
+  "shareOverLan": true,
+  "showPluginOutput": false,
+  "skippedUpdateVersion": "",
+  "strategy": null,
+  "useOnlinePac": false,
+  "userAgent": "ShadowsocksWindows/$version",
+  "version": "4.4.1.0"
+}

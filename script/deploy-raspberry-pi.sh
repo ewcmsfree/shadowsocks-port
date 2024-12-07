@@ -2,7 +2,7 @@
 
 # 设置参数值
 USER=root
-PI_IP=192.168.1.99
+PI_IP=192.168.0.99
 TARGET=aarch64-unknown-linux-musl
 
 # 添加 $TARGET 到 toolchain
