@@ -9,4 +9,4 @@ shadowsocks:
   config: /Users/wu_zhijun/works/RustroverProjects/rpi-work/shadowsocks-port/fixtures/passwall
   command:
 level:
-  log: debug
+  log: info

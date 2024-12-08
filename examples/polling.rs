@@ -1,24 +1,11 @@
 use async_trait::async_trait;
 use log::debug;
-use time::macros::format_description;
-use time::UtcOffset;
-use tracing_subscriber::fmt::time::OffsetTime;
-use tracing_subscriber::EnvFilter;
+use shadowsocks_port::log::set_tracing_subscriber;
+use tracing::Level;
 
 #[tokio::main]
 async fn main() -> ! {
-    let local_time = OffsetTime::new(
-        UtcOffset::from_hms(8, 0, 0).unwrap(),
-        format_description!("[year]-[month]-[day] [hour]:[minute]:[second].[subsecond digits:3]"),
-    );
-
-    tracing_subscriber::fmt()
-        .with_env_filter(EnvFilter::from_default_env())
-        .with_timer(local_time)
-        .with_max_level(tracing::Level::DEBUG)
-        .with_thread_names(true)
-        .with_thread_ids(true)
-        .init();
+    set_tracing_subscriber(Level::DEBUG);
 
     let poll = Poll::new(Box::new(PollTraitImplA));
 

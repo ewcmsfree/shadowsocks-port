@@ -22,3 +22,18 @@ tracing-subscriber = { version = "0.3.18", features = ["env-filter", "time", "lo
 # 时间
 time = { version = "0.3.36", features = ["macros"]}
 log = "0.4.22"
+
+[profile.dev]
+opt-level = 3
+debug = true
+codegen-units = 1
+overflow-checks = true
+lto = false
+panic = "unwind"
+
+[profile.release]
+opt-level = 3
+debug = false
+codegen-units = 1
+overflow-checks = false
+lto = "fat"

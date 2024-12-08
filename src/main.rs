@@ -11,11 +11,12 @@ use tracing::{debug, error, info};
 
 #[tokio::main]
 async fn main() -> ! {
-    // 读取 shadowsocks-config.yml 的配置文件
+    // 读取 shadowsocks-config.yml 的配置文件，读取不到直接退出程序
     let filename = Config::read_default_config().unwrap();
     let config = Config::load(filename).unwrap();
 
     set_tracing_subscriber(config.level.get_log_level());
+    info!("shadowsocks-port start");
 
     // 读取远程配置文件内容
     let remote_file = config.remote_file.connect_remote_file_url();
@@ -36,6 +37,7 @@ async fn main() -> ! {
     }
     let context = Context::new(os_context);
 
+    // 创建一个新的异步任务来修改端口号
     tokio::spawn(async move {
         modify_config(
             context.shadowsocks_port,
@@ -45,9 +47,9 @@ async fn main() -> ! {
         )
         .await;
     });
-    loop {
-        tokio::time::sleep(std::time::Duration::from_secs(1)).await;
-    }
+
+    // 主程序一直执行
+    loop {}
 }
 
 async fn modify_config(
@@ -117,7 +119,7 @@ async fn modify_config(
         } else {
             debug!("no need to change port");
         }
-        info!("end pool");
+        info!("end poll");
         tokio::time::sleep(std::time::Duration::from_secs(37)).await;
     }
 }
