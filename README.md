@@ -21,9 +21,10 @@
     
     说明：对于 aarch64-unknown-linux-musl 中的 aarch64 这是根据机器的 CPU 架构来确定的，可以通过 `uname -m` 命令来查看， 如果是 Inter 的 CPU，则使用 x86_64-unknown-linux-musl
 
-4. 把 script/shadowsocks-port.sh 脚本放到 /etc/init.d 目录下，然后执行以下命令
-    ```shell
-    $ chmod +x /etc/init.d/shadowsocks-port.sh
-    $ /etc/init.d/shadowsocks-port.sh enable
-    $ /etc/init.d/shadowsocks-port.sh start
-    ```
+4. 把 script/shadowsocks-port.sh 脚本放到服务器的 /etc/init.d 目录下，然后执行以下命令
+   ```shell
+   $ chmod +x /etc/init.d/shadowsocks-port.sh
+   $ /etc/init.d/shadowsocks-port.sh enable
+   $ /etc/init.d/shadowsocks-port.sh start
+   ```
+   把 fixtures/shadowsocks-config.yml 文件放到服务器的 /etc 目录下（自启动情况下）

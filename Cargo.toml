@@ -24,7 +24,7 @@ time = { version = "0.3.36", features = ["macros"]}
 log = "0.4.22"
 
 [profile.dev]
-opt-level = 3
+opt-level = 0
 debug = true
 codegen-units = 1
 overflow-checks = true
