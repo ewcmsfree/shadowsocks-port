@@ -4,8 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# 任意错误
-anyhow = "1.0.93"
 # 执行 shell 扩展
 shellexpand = "3.1.0"
 serde = { version = "1.0.215" , features = ["derive"] }
@@ -21,11 +19,11 @@ tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter", "time", "local-time"] }
 # 时间
 time = { version = "0.3.36", features = ["macros"]}
-log = "0.4.22"
 
 [profile.dev]
 opt-level = 0
 debug = true
+
 codegen-units = 1
 overflow-checks = true
 lto = false

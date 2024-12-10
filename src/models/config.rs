@@ -1,4 +1,4 @@
-use std::fs;
+use std::{fs, error::Error};
 use std::path::Path;
 
 /// 配置信息
@@ -11,14 +11,14 @@ pub struct Config {
 
 impl Config {
     /// 读取配置文件
-    pub fn load(filename: impl AsRef<Path>) -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn load(filename: impl AsRef<Path>) -> Result<Self, Box<dyn Error>> {
         let config = fs::read_to_string(filename)?;
         let config = serde_yaml::from_str(&config)?;
         Ok(config)
     }
 
     /// 读取默认的配置
-    pub fn read_default_config() -> anyhow::Result<String, String> {
+    pub fn read_default_config() -> Result<String, Box<dyn Error>> {
         let filename = std::env::var("SHADOWSOCKS_CONFIG").unwrap_or_else(|_| {
             let first_path = Path::new("./shadowsocks-config.yml");
             let path = shellexpand::tilde("~/.config/shadowsocks-config.yml");
