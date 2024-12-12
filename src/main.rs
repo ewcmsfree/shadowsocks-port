@@ -58,9 +58,9 @@ async fn modify_config(
     shadowsocks_config: String,
     shadowsocks_command: String,
 ) {
+    let shadowsocks_config_path = Path::new(&shadowsocks_config);
     loop {
         info!("start polling");
-        let shadowsocks_config_path = Path::new(&shadowsocks_config);
 
         let remote_port = match read_file_async(&remote_file).await {
             Ok(remote_port) => remote_port.replace("\n", "").replace("\r", ""),
