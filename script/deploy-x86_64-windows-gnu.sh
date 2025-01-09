@@ -7,7 +7,7 @@ TARGET=x86_64-pc-windows-gnu
 rustup target add $TARGET
 
 ## 运行 cargo 清除
-cargo clean
+#cargo clean
 
 ## 构建项目工程
 #cargo build --release --target $TARGET
