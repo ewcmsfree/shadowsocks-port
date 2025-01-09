@@ -6,9 +6,6 @@ TARGET=x86_64-unknown-linux-musl
 ## 添加 $TARGET 到 toolchain
 rustup target add $TARGET
 
-## 运行 cargo 清除
-#cargo clean
-
 #export CC_X86_64_UNKNOWN_LINUX_MUSL=x86_64-unknown-linux-musl-gcc
 #export CXX_X86_64_UNKNOWN_LINUX_MUSL=x86_64-unknown-linux-musl-g++
 #export AR_X86_64_UNKNOWN_LINUX_MUSL=x86_64-unknown-linux-musl-ar
