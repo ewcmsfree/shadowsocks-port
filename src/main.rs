@@ -49,7 +49,9 @@ async fn main() -> ! {
     });
 
     // 主程序一直执行
-    loop {}
+    loop {
+        tokio::time::sleep(std::time::Duration::from_secs(3600)).await;
+    }
 }
 
 async fn modify_config(

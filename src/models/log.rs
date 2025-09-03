@@ -1,6 +1,6 @@
-use time::{macros::format_description, UtcOffset};
+use time::{UtcOffset, macros::format_description};
 use tracing::Level;
-use tracing_subscriber::{fmt::time::OffsetTime, EnvFilter};
+use tracing_subscriber::{EnvFilter, fmt::time::OffsetTime};
 
 /// 设置日志打印级别
 pub fn set_tracing_subscriber(level: Level) {

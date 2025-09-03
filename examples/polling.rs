@@ -1,6 +1,6 @@
 use async_trait::async_trait;
 use shadowsocks_port::log::set_tracing_subscriber;
-use tracing::{debug, Level};
+use tracing::{Level, debug};
 
 #[tokio::main]
 async fn main() -> ! {

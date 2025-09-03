@@ -20,7 +20,7 @@ impl ShadowsocksPort for Windows {
 
         if !parsed_json.is_null() {
             if let Some(configs) = parsed_json.as_object_mut().unwrap().get_mut("configs") {
-                if let Some(Value::Object(ref mut obj)) = configs.get_mut(0) {
+                if let Some(Value::Object(obj)) = configs.get_mut(0) {
                     if let Some(server_port) = obj.get_mut("server_port") {
                         return Ok(server_port.as_u64().unwrap_or(0) as u32);
                     }
@@ -40,7 +40,7 @@ impl ShadowsocksPort for Windows {
         let mut parsed_json: Value = serde_json::from_reader(reader)?;
 
         if let Some(configs) = parsed_json.as_object_mut().unwrap().get_mut("configs") {
-            if let Some(Value::Object(ref mut obj)) = configs.get_mut(0) {
+            if let Some(Value::Object(obj)) = configs.get_mut(0) {
                 if let Some(server_port) = obj.get_mut("server_port") {
                     *server_port = Value::Number(serde_json::Number::from(port));
 

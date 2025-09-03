@@ -1,5 +1,5 @@
-use std::{fs, error::Error};
 use std::path::Path;
+use std::{error::Error, fs};
 
 /// 配置信息
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]

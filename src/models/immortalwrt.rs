@@ -1,7 +1,7 @@
 use crate::context::ShadowsocksPort;
 use async_trait::async_trait;
 use std::error::Error;
-use std::fs::{read_to_string, File};
+use std::fs::{File, read_to_string};
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::path::Path;
 use tracing::debug;
