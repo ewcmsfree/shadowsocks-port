@@ -10,8 +10,9 @@ start() {
     return 0
   else
 	  /usr/bin/shadowsocks-port &
+	  sleep 1
 	  echo "shadowsocks-port is running..."
-	  return 1
+	  return 0
   fi
 }
 stop() {

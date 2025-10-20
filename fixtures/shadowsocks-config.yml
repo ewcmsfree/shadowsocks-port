@@ -6,7 +6,7 @@ remote_file:
 shadowsocks:
 # os is immortalwrt、macos、windows、Linux、ubuntu
   os: immortalwrt
-  config: /Users/wu_zhijun/works/RustroverProjects/rpi-work/shadowsocks-port/fixtures/passwall
-  command:
+  config: /etc/config/passwall
+  command: /etc/init.d/passwall restart # reboot
 level:
   log: info

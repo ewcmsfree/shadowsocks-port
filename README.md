@@ -23,11 +23,12 @@
 
 4. 把 script/shadowsocks-port.sh 脚本放到服务器的 /etc/init.d 目录下，然后执行以下命令
    ```shell
-   $ chmod +x /etc/init.d/shadowsocks-port.sh
-   $ /etc/init.d/shadowsocks-port.sh enable
-   $ /etc/init.d/shadowsocks-port.sh start
+   $ chmod +x /etc/init.d/shadowsocks-port
+   $ /etc/init.d/shadowsocks-port enable
+   $ /etc/init.d/shadowsocks-port start
    ```
    把 fixtures/shadowsocks-config.yml 文件放到服务器的 /etc 目录下（自启动情况下）
+
 5. Rustc/LLVM Target Triple
    <arch><sub>-<vendor>-<sys>-<env>
    - arch = x86_64，i386，arm，...
@@ -35,6 +36,7 @@
    - vendor = [optional] pc，apple，ibm，...
    - sys = none，linux，windows，darwin，...
    - env = eabi，gnu，elf，...
+   
 6. macos-cross-toolchains
    
    macOS跨编译器工具链，支持Apple Si和Intel Mac，下载预编译的工具链：https://github.com/messense/homebrew-macos-cross-toolchains/releases 或者使用Homebrew安装
