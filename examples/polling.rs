@@ -6,14 +6,16 @@ use tracing::{Level, debug};
 async fn main() -> ! {
     set_tracing_subscriber(Level::DEBUG);
 
-    let poll = Poll::new(Box::new(PollTraitImplA));
-
-    let test = "test";
-    tokio::spawn(async move {
-        sub_test(poll.model, test.to_string()).await;
-    });
     loop {
+        let poll = Poll::new(Box::new(PollTraitImplA));
+
+        let test = "test";
+        tokio::spawn(async move {
+            sub_test(poll.model, test.to_string()).await;
+        });
+
         debug!("This is a polling loop");
+
         tokio::time::sleep(std::time::Duration::from_secs(1)).await;
     }
 }

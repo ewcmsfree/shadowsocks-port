@@ -13,10 +13,6 @@ impl ShadowsocksPort for Immortalwrt {
     async fn read_shadowsocks_port(&self, file_path: &Path) -> Result<u32, Box<dyn Error>> {
         let file = File::open(file_path)?;
         let reader = BufReader::new(file);
-        debug!(
-            "read local shadowsocks config file : {:#?}",
-            read_to_string(file_path)?
-        );
 
         for line in reader.lines() {
             let line = line?;

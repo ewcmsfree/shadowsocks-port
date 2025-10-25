@@ -18,53 +18,53 @@ async fn main() -> ! {
     set_tracing_subscriber(config.level.get_log_level());
     info!("shadowsocks-port start");
 
-    // 读取远程配置文件内容
-    let remote_file = config.remote_file.connect_remote_file_url();
-    debug!("remote file: {remote_file}");
-
-    let shadowsocks_config = config.shadowsocks.get_config();
-    debug!("local shadowsocks config: {shadowsocks_config}");
-    let shadowsocks_os = config.shadowsocks.get_os().to_lowercase();
-    debug!("local shadowsocks os: {shadowsocks_os}");
-    let shadowsocks_command = config.shadowsocks.get_command();
-    debug!("local shadowsocks command: {shadowsocks_command}");
-
-    let mut os_context: Box<dyn ShadowsocksPort + Send> = Box::new(Immortalwrt);
-    if shadowsocks_os.contains("macos") {
-        os_context = Box::new(MacOS);
-    } else if shadowsocks_os.contains("windows") {
-        os_context = Box::new(Windows);
-    }
-    let context = Context::new(os_context);
-
-    // 创建一个新的异步任务来修改端口号
-    tokio::spawn(async move {
-        modify_config(
-            context.shadowsocks_port,
-            remote_file,
-            shadowsocks_config,
-            shadowsocks_command,
-        )
-        .await;
-    });
-
     // 主程序一直执行
     loop {
-        tokio::time::sleep(std::time::Duration::from_secs(3600)).await;
+        // 读取远程配置文件内容
+        let remote_file = config.remote_file.connect_remote_file_url();
+        debug!("remote file: {remote_file}");
+
+        let shadowsocks_config = config.shadowsocks.get_config();
+        debug!("local shadowsocks config: {shadowsocks_config}");
+        let shadowsocks_os = config.shadowsocks.get_os().to_lowercase();
+        debug!("local shadowsocks os: {shadowsocks_os}");
+        let shadowsocks_command = config.shadowsocks.get_command();
+        debug!("local shadowsocks command: {shadowsocks_command}");
+
+        let mut os_context: Box<dyn ShadowsocksPort + Send> = Box::new(Immortalwrt);
+        if shadowsocks_os.contains("macos") {
+            os_context = Box::new(MacOS);
+        } else if shadowsocks_os.contains("windows") {
+            os_context = Box::new(Windows);
+        }
+        let context = Context::new(os_context);
+
+        // 创建一个新的异步任务来修改端口号
+        tokio::spawn(async move {
+            modify_config(
+                context.shadowsocks_port,
+                &remote_file,
+                &shadowsocks_config,
+                &shadowsocks_command,
+            )
+                .await;
+        });
+
+        tokio::time::sleep(std::time::Duration::from_secs(24 * 60 * 60 )).await;
     }
 }
 
 async fn modify_config(
     shadowsocks_port: Box<dyn ShadowsocksPort + Send>,
-    remote_file: String,
-    shadowsocks_config: String,
-    shadowsocks_command: String,
+    remote_file: &str,
+    shadowsocks_config: &str,
+    shadowsocks_command: &str,
 ) {
-    let shadowsocks_config_path = Path::new(&shadowsocks_config);
+    let shadowsocks_config_path = Path::new(shadowsocks_config);
     loop {
         info!("start polling");
 
-        let remote_port = match read_file_async(&remote_file).await {
+        let remote_port = match read_file_async(remote_file).await {
             Ok(remote_port) => remote_port.replace("\n", "").replace("\r", ""),
             Err(err) => {
                 error!("read remote file error: {err}");
@@ -107,16 +107,29 @@ async fn modify_config(
                 }
             };
             if !shadowsocks_command.is_empty() {
-                info!("local command restarting");
-                match Command::new(&shadowsocks_command).status() {
-                    Ok(_) => {
-                        info!("local command success");
-                    }
-                    Err(err) => {
-                        error!("local command error: {err}");
-                        continue;
-                    }
-                };
+                info!("local command");
+                let common: Vec<&str> = shadowsocks_command.split(' ').collect();
+                if common.len() == 2 {
+                    match Command::new(&common[0]).arg(&common[1]).status() {
+                        Ok(_) => {
+                            info!("local command success");
+                        }
+                        Err(err) => {
+                            error!("local command error: {err}");
+                            continue;
+                        }
+                    };
+                } else {
+                    match Command::new(shadowsocks_command).status() {
+                        Ok(_) => {
+                            info!("local command success");
+                        }
+                        Err(err) => {
+                            error!("local command error: {err}");
+                            continue;
+                        }
+                    };
+                }
             }
         } else {
             debug!("no need to change port");

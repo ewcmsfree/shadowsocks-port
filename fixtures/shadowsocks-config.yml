@@ -7,6 +7,6 @@ shadowsocks:
 # os is immortalwrt、macos、windows、Linux、ubuntu
   os: immortalwrt
   config: /etc/config/passwall
-  command: /etc/init.d/passwall restart # reboot
+  command: /etc/init.d/passwall restart
 level:
   log: info
