@@ -135,6 +135,6 @@ async fn modify_config(
             debug!("no need to change port");
         }
         info!("end poll");
-        tokio::time::sleep(std::time::Duration::from_secs(37)).await;
+        tokio::time::sleep(std::time::Duration::from_secs(60)).await;
     }
 }

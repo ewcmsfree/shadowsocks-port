@@ -36,12 +36,21 @@ impl ShadowsocksPort for Immortalwrt {
         let temp_file = File::create(&temp_file_path)?;
         let mut writer = BufWriter::new(temp_file);
 
+        let mut is_upd_port = true;
         for line in reader.lines() {
             let line = line?;
+            if line.contains("option type 'Socks'") {
+                is_upd_port = false;
+            }
             if line.contains("option port") {
-                let mut new_line = line;
-                new_line.replace_range(0..new_line.len(), &format!("	option port '{}'", port));
-                writer.write_all(new_line.as_bytes())?;
+                if is_upd_port {
+                    let mut new_line = line;
+                    new_line.replace_range(0..new_line.len(), &format!("	option port '{}'", port));
+                    writer.write_all(new_line.as_bytes())?;
+                } else {
+                    writer.write_all(line.as_bytes())?;
+                    is_upd_port = true;
+                }
             } else {
                 writer.write_all(line.as_bytes())?;
             }
