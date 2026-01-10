@@ -47,10 +47,10 @@ async fn main() -> ! {
                 &shadowsocks_config,
                 &shadowsocks_command,
             )
-                .await;
+            .await;
         });
 
-        tokio::time::sleep(std::time::Duration::from_secs(24 * 60 * 60 )).await;
+        tokio::time::sleep(std::time::Duration::from_secs(24 * 60 * 60)).await;
     }
 }
 

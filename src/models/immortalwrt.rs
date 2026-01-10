@@ -14,11 +14,19 @@ impl ShadowsocksPort for Immortalwrt {
         let file = File::open(file_path)?;
         let reader = BufReader::new(file);
 
+        let mut is_upd_port = true;
         for line in reader.lines() {
             let line = line?;
+            if line.contains("option type 'Socks'") {
+                is_upd_port = false;
+            }
             if line.contains("option port") {
-                let port = line.split_whitespace().nth(2).unwrap().replace("'", "");
-                return Ok(port.parse::<u32>()?);
+                if is_upd_port {
+                    let port = line.split_whitespace().nth(2).unwrap().replace("'", "");
+                    return Ok(port.parse::<u32>()?);
+                } else {
+                    is_upd_port = true;
+                }
             }
         }
         Ok(0)
